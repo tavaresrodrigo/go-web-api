@@ -58,4 +58,4 @@ $ terraform destroy
 
 ## Contributing
 
-If you are weelling to contribute, or in case you see any error and want to suggest a fix or correction, please raise an issue, I will be happy to collaborate. 
+Are you willing to contribute? Have you seen any errors, typos ? Do you want to suggest any improvement? Please don't be afraid to raise an issue, I will be happy to collaborate. You don't even need to know Terraform, AWS, Containers or anything related to these topics I have approached here, I truly believe in the power of collaboration and I will be happy to assist you in your first PR.
