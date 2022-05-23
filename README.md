@@ -7,20 +7,27 @@ A complete CI/CD pipeline defined through Terraform that implements CodePipeline
 * This diagram was drawn using [app.diagrams.net](https://app.diagrams.net/), and is available as XML compressed standard deflate format on [diagrams/KubeadmClusterAWS](/diagrams/FargatePipeline). Refer to https://drawio-app.com/extracting-the-xml-from-mxfiles/ if you want to get the raw XML.
 
 
+## More details about the Pipeline components
+
+### Source
 All the changes on the application will take place in the GitHub repository where the source code is stored, every new push event will trigger the CodeStart Connection via webhook, this connection installs a repository webhook on the GitHub App that subscribes to GitHub push type events, when a code change is made to the code repository, Code Start triggers the event to deploy a new application version through CodePipeline. 
 
+### Build 
 CodeBuild downloads the source code into the build environment and then uses the build specification (buildspec) to build the new container image that will later be scanned by Trivy searching for vulnerabilitites. In this step the container Image is scanned, if CRITICAL vulnerabilities are found, the build process, and manual intervention is required fix the vulnerabilities to be able to proceed.
 
+### Deployment
 CodeDeploy automates the application deployment on Amazon ECS a service. The ECS service will deploy a new Fargate task based on the task definition to create a new container from the latest image.  The Fargate Container logs (STDOUT and STDERR I/O streams) will be streamed to a CloudWatch group as recommended by the Twelve-Factor App XI. Logs Treat logs as event streams.
 
 The application load Balancer is created together with a target group and the health check criteria for targets that are registered within that group, in this case the Fargate task. At the end of the Terraform deploy there is an output that will inform the Load Balancer endpoint.
 
-It's important to highlight the most important part of the whole thing, which are the users/developers. 
 
 > "Any fool can write code that a computer can understand. Good programmers write code that humans can understand."
+> 
 > Martin Fowler.
 
-## Privisioning resources on AWS
+
+
+## Provisioning the Pipeline resources on AWS
 
 ### Requirements
 
