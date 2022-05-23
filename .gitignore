@@ -1,6 +1,6 @@
 #Local .terraform directories
-Terraform/*
 **/.terraform/
+*.tfsec/
 *.terraform*
 *.tfstate*
 
