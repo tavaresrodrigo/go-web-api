@@ -26,6 +26,7 @@ The application load Balancer is created together with a target group and the he
 > Martin Fowler.
 
 
+** Currently working on the CI/CD Pipeline with AWS CodePipeline, ongoing. 
 
 ## Provisioning the Pipeline resources on AWS
 
